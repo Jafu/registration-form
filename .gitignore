@@ -7,6 +7,8 @@
 # parcel temp files
 /.cache
 
+# vim
+.lvimrc
 # misc
 .DS_Store
 npm-debug.log*
