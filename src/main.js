@@ -45,13 +45,15 @@ function render(store) {
 }
 
 function loginForm({ email, password, validationErrors }) {
+  const disabled = validationErrors.length > 0 ? "disabled" : "";
+
   return `<form>
-		<label>Email: ${inputName(email)}</label>
-		<label>Password: ${inputPassword(password)}</label>
+		<h1>Register</h1>
+		<p>Create your personal account</p>	
+		<p>${inputName(email)}</p>
+		<p>${inputPassword(password)}</p>
 		${hintsList(validationErrors)}
-		<input type="submit" value="Register" ${
-      validationErrors.length > 0 ? "disabled" : ""
-    }/>
+		<input type="submit" value="Register" ${disabled}/>
 	</form>`;
 }
 
@@ -65,9 +67,11 @@ function hintsList(hints) {
 }
 
 function inputName(email) {
-  return `<input class="login-mail" type="text" value="${email}"/>`;
+  return `<label for="login-mail">Email address</label>
+<input id="login-mail" class="login-mail" type="text" value="${email}"/>`;
 }
 
 function inputPassword(password) {
-  return `<input class="login-password" type="password" value="${password}"/>`;
+  return `<label>Password</label>
+<input class="login-password" type="password" value="${password}"/>`;
 }
