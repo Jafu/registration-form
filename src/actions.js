@@ -1,8 +1,9 @@
-
 export const ACTIONS = {
 	INIT: 'INIT',
 	LOGIN_EMAIL_INPUT: 'LOGIN_EMAIL_INPUT',
 	LOGIN_EMAIL_BLUR: 'LOGIN_EMAIL_BLUR',
+	PASSWORD_INPUT: 'PASSWORD_INPUT',
+	PASSWORD_BLUR: 'PASSWORD_BLUR',
 };
 
 
@@ -36,6 +37,28 @@ export function createLoginEmailInput(element) {
 export function createLoginEmailBlur(element, activeElement) {
 	return {
 		type: ACTIONS.LOGIN_EMAIL_BLUR,
+		data: {
+			value: element.value,
+			focus: getFocus(activeElement, true),
+		},
+	};
+}
+
+
+export function createPasswordInput(element) {
+	return {
+		type: ACTIONS.PASSWORD_INPUT,
+		data: {
+			value: element.value,
+			focus: getFocus(element),
+		},
+	};
+}
+
+
+export function createPasswordBlur(element, activeElement) {
+	return {
+		type: ACTIONS.PASSWORD_BLUR,
 		data: {
 			value: element.value,
 			focus: getFocus(activeElement, true),
