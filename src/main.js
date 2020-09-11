@@ -23,8 +23,8 @@ export function init() {
 function render(store) {
 	const mountNode = document.getElementById("app");
 	const name = 'Jakob';
-	const { focus, email, password } = store.getState();
-	mountNode.innerHTML = loginForm({ email, password });
+	const { focus, email, password, validationErrors } = store.getState();
+	mountNode.innerHTML = loginForm({ email, password, validationErrors });
 	mountNode.querySelector('input.login-mail').oninput = (e) => {
 		store.dispatch(createLoginEmailInput(e.target));
 	};
@@ -46,12 +46,22 @@ function render(store) {
 }
 
 
-function loginForm({ email, password }) {
+function loginForm({ email, password, validationErrors }) {
 	return `<form>
 		<label>Email: ${inputName(email)}</label>
 		<label>Password: ${inputPassword(password)}</label>
-		<input type="submit" value="Register"/>
+		${hintsList(validationErrors)}
+		<input type="submit" value="Register" ${validationErrors.length > 0 ? 'disabled' : ''}/>
 	</form>`;
+}
+
+function hintsList(hints) {
+	if (hints.length === 0) {
+		return '';
+	}
+	return `<ul>
+		${hints.map(hint => `<li>${hint}</li>`).join('')}
+	</ul>`;
 }
 
 function inputName(email) {

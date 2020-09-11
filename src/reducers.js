@@ -9,6 +9,7 @@ export function reduce(state, { type, data }) {
 		case ACTIONS.PASSWORD_INPUT:
 			state.password = data.value;
 			state.focus = data.focus;
+			state.validationErrors = validatePassword(state.password);
 			break;
 		case ACTIONS.PASSWORD_BLUR:
 			state.password = data.value;
@@ -28,4 +29,16 @@ export function reduce(state, { type, data }) {
 		default:
 	}
 	return state;
+}
+
+
+function validatePassword(password) {
+	const validationErrors = [];
+	if (!/\d/.test(password)) {
+		validationErrors.push('Password must contain number.');
+	}
+	if (!/[^A-Za-z0-9]/.test(password)) {
+		validationErrors.push('Password must contain special char.');
+	}
+	return validationErrors;
 }
