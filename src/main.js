@@ -1,10 +1,7 @@
-import React from "react";
-import ReactDOM from "react-dom";
 import { createStore } from "redux";
 
-import { reduce } from "./reducers";
+import reduce from "./reducers";
 import {
-  ACTIONS,
   createInit,
   createLoginEmailBlur,
   createPasswordBlur,
@@ -18,9 +15,12 @@ export function init() {
   store.dispatch(createInit());
 }
 
+export default {
+  init,
+};
+
 function render(store) {
   const mountNode = document.getElementById("app");
-  const name = "Jakob";
   const { focus, email, password, validationErrors } = store.getState();
   mountNode.innerHTML = loginForm({ email, password, validationErrors });
   mountNode.querySelector("input.login-mail").oninput = (e) => {

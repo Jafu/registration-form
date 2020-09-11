@@ -1,5 +1,8 @@
-import { reduce } from "../main";
+import { init } from "../main";
 
-test("should assert hello world", () => {
-  expect("hello world");
+describe("> TestSuite: init", () => {
+  it("should assert hello world", () => {
+    expect.assertions(1);
+    expect(typeof init).toBe("function");
+  });
 });

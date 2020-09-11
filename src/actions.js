@@ -67,10 +67,10 @@ function getFocus(element, blur) {
     element.nodeName.toLowerCase() !== "input" ||
     element.classList.length === 0
   ) {
-    return;
+    return undefined;
   }
   return {
-    element: "input." + [...element.classList].join("."),
+    element: `input.${[...element.classList].join(".")}`,
     selection: blur
       ? [0, element.value.length]
       : [element.selectionStart, element.selectionEnd],

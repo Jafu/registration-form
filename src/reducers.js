@@ -1,33 +1,27 @@
 import { ACTIONS } from "./actions";
 
-export function reduce(state, { type, data }) {
+export default function reduce(state, { type, data }) {
   switch (type) {
     case ACTIONS.INIT:
-      state = data;
-      break;
+      return data;
     case ACTIONS.PASSWORD_INPUT:
-      state.password = data.value;
-      state.focus = data.focus;
-      state.validationErrors = validatePassword(state.password);
-      break;
+      return {
+        ...state,
+        password: data.value,
+        focus: data.focus,
+        validationErrors: validatePassword(state.password),
+      };
     case ACTIONS.PASSWORD_BLUR:
-      state.password = data.value;
-      state.focus = data.focus;
-      break;
+      return { ...state, password: data.value, focus: data.focus };
     case ACTIONS.LOGIN_EMAIL_INPUT:
-      state.email = data.value;
-      state.focus = data.focus;
-      break;
+      return { ...state, mail: data.value, focus: data.focus };
     case ACTIONS.LOGIN_EMAIL_BLUR:
-      state.email = data.value;
-      state.focus = data.focus;
-      break;
+      return { ...state, mail: data.value, focus: data.focus };
     case ACTIONS.REGISTER_CLICK:
-      state.validationErrors = ["yes"];
-      break;
+      return { ...state, validationErrors: ["yes"] };
     default:
+      return state;
   }
-  return state;
 }
 
 function validatePassword(password) {
