@@ -31,20 +31,39 @@ export default function reduce(state, { type, data }) {
 
 export function validatePassword(password) {
   const validationErrors = [];
-  if (!/[A-Z]/.test(password)) {
-    validationErrors.push("Password must contain capital letter.");
-  }
-  if (!/[a-z]/.test(password)) {
-    validationErrors.push("Password must contain lower case character.");
-  }
-  if (!/\d/.test(password)) {
-    validationErrors.push("Password must contain number.");
-  }
-  if (!/[^A-Za-z0-9]/.test(password)) {
-    validationErrors.push("Password must contain special char.");
-  }
-  if (password.length < 8) {
-    validationErrors.push("Password must be 8 characters long.");
-  }
+  validationErrors.push(
+    createPasswordRequirement(
+      /[A-Z]/.test(password),
+      "Password must contain capital letter."
+    )
+  );
+  validationErrors.push(
+    createPasswordRequirement(
+      /[a-z]/.test(password),
+      "Password must contain lower case letter."
+    )
+  );
+  validationErrors.push(
+    createPasswordRequirement(
+      /\d/.test(password),
+      "Password must contain number."
+    )
+  );
+  validationErrors.push(
+    createPasswordRequirement(
+      /[^A-Za-z0-9]/.test(password),
+      "Password must contain special char."
+    )
+  );
+  validationErrors.push(
+    createPasswordRequirement(
+      password.length >= 8,
+      "Password must be at least 8 characters long."
+    )
+  );
   return validationErrors;
+}
+
+function createPasswordRequirement(fullFilled, infoText) {
+  return { fullFilled, infoText };
 }
