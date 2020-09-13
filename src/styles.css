@@ -65,4 +65,5 @@ li {
   color: white;
   background-color: tomato;
   text-transform: uppercase;
+  box-shadow: 0 2px 4px gray;
 }
