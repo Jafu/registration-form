@@ -109,11 +109,11 @@ function iconUnDone() {
 }
 
 function inputName(email) {
-  return `<label for="login-mail">Email address</label>
+  return `<label class="login__mail-label" for="login-mail">Email address</label>
 <input id="login-mail" class="login-mail" type="text" value="${email}"/>`;
 }
 
 function inputPassword(password) {
-  return `<label>Password</label>
-<input class="login-password" type="password" value="${password}"/>`;
+  return `<label class="login__password-label"for="login-password">Password</label>
+<input id="login-password" class="login-password" type="password" value="${password}"/>`;
 }

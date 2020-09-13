@@ -1,5 +1,11 @@
 .login {
   font-family: Helvetica;
+  font-size: 14px;
+  width: 300px;
+  margin: 5px;
+  box-shadow: 0 2px 4px gray;
+  padding: 10px 20px 20px;
+  border-radius: 3px;
 }
 
 label {
@@ -13,6 +19,20 @@ ul {
 
 li {
   list-style: none;
+}
+
+.login__mail-label,
+.login__password-label {
+  padding: 5px 10px;
+}
+
+#login-mail,
+#login-password {
+  font-size: 14px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
 }
 
 .login__password-requirement-icon {
@@ -36,8 +56,8 @@ li {
 .login__submit-button {
   font-size: 16px;
   border: none;
-  border-radius: 3px;
-  padding: 5px 10px;
+  border-radius: 10px;
+  padding: 10px;
   color: white;
   background-color: tomato;
   text-transform: uppercase;
