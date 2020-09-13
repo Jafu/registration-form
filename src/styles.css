@@ -35,6 +35,10 @@ li {
   width: 100%;
 }
 
+.login__password-requirements {
+  padding: 0 10px;
+}
+
 .login__password-requirement-icon {
   width: 16px;
   height: 16px;
