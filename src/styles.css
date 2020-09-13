@@ -1,0 +1,28 @@
+.login {
+  font-family: Helvetica;
+}
+
+label {
+  display: block;
+  width: 100%;
+}
+
+ul {
+  padding-left: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.login__password-requirement-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.login__password-requirement-icon-svg {
+  width: 14px;
+  height: 14px;
+}
