@@ -69,12 +69,14 @@ export function createSubmit() {
 }
 
 function getFocus(element, blur) {
-  if (
-    !element ||
-    element.nodeName.toLowerCase() !== "input" ||
-    element.classList.length === 0
-  ) {
+  if (!element || element.classList.length === 0) {
     return undefined;
+  }
+  const nodeName = element.nodeName.toLowerCase();
+  if (typeof element.selectionStart !== "number") {
+    return {
+      element: `${nodeName}.${[...element.classList].join(".")}`,
+    };
   }
   return {
     element: `input.${[...element.classList].join(".")}`,

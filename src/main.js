@@ -59,9 +59,11 @@ function render(store) {
   };
   if (focus) {
     mountNode.querySelector(focus.element).focus();
-    mountNode
-      .querySelector(focus.element)
-      .setSelectionRange(...focus.selection);
+    if (focus.selection) {
+      mountNode
+        .querySelector(focus.element)
+        .setSelectionRange(...focus.selection);
+    }
   }
 }
 
