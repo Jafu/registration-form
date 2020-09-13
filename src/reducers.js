@@ -11,13 +11,18 @@ export default function reduce(state, { type, data }) {
         focus: data.focus,
         validationErrors: validatePassword(data.value),
       };
-    case ACTIONS.PASSWORD_BLUR:
+    case ACTIONS.PASSWORD_BLUR: {
+      const validationErrors = validatePassword(data.value);
       return {
         ...state,
         password: data.value,
         focus: data.focus,
-        validationErrors: validatePassword(data.value),
+        showPasswordHints: validationErrors.find(
+          ({ fullFilled }) => !fullFilled
+        ),
+        validationErrors,
       };
+    }
     case ACTIONS.LOGIN_EMAIL_INPUT:
       return { ...state, email: data.value, focus: data.focus };
     case ACTIONS.LOGIN_EMAIL_BLUR:
@@ -27,6 +32,9 @@ export default function reduce(state, { type, data }) {
       return {
         ...state,
         submitNow: true,
+        showPasswordHints: validationErrors.find(
+          ({ fullFilled }) => !fullFilled
+        ),
         validationErrors,
       };
     }
