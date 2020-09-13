@@ -7,6 +7,7 @@ import {
   createPasswordBlur,
   createLoginEmailInput,
   createPasswordInput,
+  createSubmit,
 } from "./actions";
 
 export function init() {
@@ -21,8 +22,24 @@ export default {
 
 function render(store) {
   const mountNode = document.getElementById("app");
-  const { focus, email, password, validationErrors } = store.getState();
-  mountNode.innerHTML = loginForm({ email, password, validationErrors });
+  const {
+    focus,
+    email,
+    password,
+    validationErrors,
+    showPasswordHints,
+    submitNow,
+  } = store.getState();
+  if (submitNow) {
+    mountNode.querySelector("form").submit();
+    return;
+  }
+  mountNode.innerHTML = loginForm({
+    email,
+    password,
+    validationErrors,
+    showPasswordHints,
+  });
   mountNode.querySelector("input.login-mail").oninput = (e) => {
     store.dispatch(createLoginEmailInput(e.target));
   };
@@ -35,7 +52,11 @@ function render(store) {
   mountNode.querySelector("input.login-password").onblur = (e) => {
     store.dispatch(createPasswordBlur(e.target, e.relatedTarget));
   };
-
+  mountNode.querySelector("form").onsubmit = (e) => {
+    store.dispatch(createSubmit(e.target, e.relatedTarget));
+    e.stopPropagation();
+    e.preventDefault();
+  };
   if (focus) {
     mountNode.querySelector(focus.element).focus();
     mountNode
@@ -44,16 +65,15 @@ function render(store) {
   }
 }
 
-function loginForm({ email, password, validationErrors }) {
+function loginForm({ email, password, validationErrors, showPasswordHints }) {
   const disabled = validationErrors.length > 0 ? "disabled" : "";
-
-  return `<form>
+  return `<form class="login" action='/register'>
 		<h1>Register</h1>
 		<p>Create your personal account</p>	
 		<p>${inputName(email)}</p>
 		<p>${inputPassword(password)}</p>
-		${hintsList(validationErrors)}
-		<input type="submit" value="Register" ${disabled}/>
+		${showPasswordHints ? hintsList(validationErrors) : ""}
+		<input type="submit" class="login-submit" value="Register Now" ${disabled}/>
 	</form>`;
 }
 

@@ -22,8 +22,14 @@ export default function reduce(state, { type, data }) {
       return { ...state, email: data.value, focus: data.focus };
     case ACTIONS.LOGIN_EMAIL_BLUR:
       return { ...state, email: data.value, focus: data.focus };
-    case ACTIONS.REGISTER_CLICK:
-      return { ...state, validationErrors: ["yes"] };
+    case ACTIONS.REGISTER_CLICK: {
+      const validationErrors = validatePassword(state.password);
+      return {
+        ...state,
+        submitNow: true,
+        validationErrors,
+      };
+    }
     default:
       return state;
   }

@@ -4,6 +4,7 @@ export const ACTIONS = {
   LOGIN_EMAIL_BLUR: "LOGIN_EMAIL_BLUR",
   PASSWORD_INPUT: "PASSWORD_INPUT",
   PASSWORD_BLUR: "PASSWORD_BLUR",
+  REGISTER_CLICK: "REGISTER_CLICK",
 };
 
 export function createInit() {
@@ -58,6 +59,12 @@ export function createPasswordBlur(element, activeElement) {
       value: element.value,
       focus: getFocus(activeElement, true),
     },
+  };
+}
+
+export function createSubmit() {
+  return {
+    type: ACTIONS.REGISTER_CLICK,
   };
 }
 
