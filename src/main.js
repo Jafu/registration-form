@@ -68,14 +68,13 @@ function render(store) {
 }
 
 function loginForm({ email, password, validationErrors, showPasswordHints }) {
-  const disabled = validationErrors.length > 0 ? "disabled" : "";
   return `<form class="login" action='/register'>
 		<h1>Register</h1>
-		<p>Create your personal account</p>	
+		<p><caption>Create your personal account</caption></p>	
 		<p>${inputName(email)}</p>
 		<p>${inputPassword(password)}</p>
 		${showPasswordHints ? hintsList(validationErrors) : ""}
-		<input type="submit" class="login-submit" value="Register Now" ${disabled}/>
+		<input type="submit" class="login-submit" value="Register Now"/>
 	</form>`;
 }
 
