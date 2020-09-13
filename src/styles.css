@@ -26,3 +26,13 @@ li {
   width: 14px;
   height: 14px;
 }
+
+.login__submit-button {
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: white;
+  background-color: tomato;
+  text-transform: uppercase;
+}

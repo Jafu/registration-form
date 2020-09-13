@@ -74,7 +74,7 @@ function loginForm({ email, password, validationErrors, showPasswordHints }) {
 		<p>${inputName(email)}</p>
 		<p>${inputPassword(password)}</p>
 		${showPasswordHints ? hintsList(validationErrors) : ""}
-		<input type="submit" class="login-submit" value="Register Now"/>
+		<input type="submit" class="login__submit-button" value="Register Now"/>
 	</form>`;
 }
 
