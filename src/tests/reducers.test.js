@@ -17,7 +17,7 @@ describe("> TestSuite: reducers", () => {
       ).toStrictEqual([
         {
           fullFilled: true,
-          infoText: "Password must contain lower case letter.",
+          infoText: "a lower case letter",
         },
       ]);
     });
@@ -32,7 +32,7 @@ describe("> TestSuite: reducers", () => {
       ).toStrictEqual([
         {
           fullFilled: true,
-          infoText: "Password must contain capital letter.",
+          infoText: "a capital letter",
         },
       ]);
     });
@@ -47,7 +47,7 @@ describe("> TestSuite: reducers", () => {
       ).toStrictEqual([
         {
           fullFilled: true,
-          infoText: "Password must contain number.",
+          infoText: "a number",
         },
       ]);
     });
@@ -62,7 +62,7 @@ describe("> TestSuite: reducers", () => {
       ).toStrictEqual([
         {
           fullFilled: true,
-          infoText: "Password must contain special char.",
+          infoText: "a special char",
         },
       ]);
     });
@@ -77,11 +77,11 @@ describe("> TestSuite: reducers", () => {
       ).toStrictEqual([
         {
           fullFilled: true,
-          infoText: "Password must contain capital letter.",
+          infoText: "a capital letter",
         },
         {
           fullFilled: true,
-          infoText: "Password must be at least 8 characters long.",
+          infoText: "8 characters",
         },
       ]);
     });

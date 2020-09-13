@@ -46,34 +46,19 @@ export default function reduce(state, { type, data }) {
 export function validatePassword(password) {
   const validationErrors = [];
   validationErrors.push(
-    createPasswordRequirement(
-      /[A-Z]/.test(password),
-      "Password must contain capital letter."
-    )
+    createPasswordRequirement(/[A-Z]/.test(password), "a capital letter")
   );
   validationErrors.push(
-    createPasswordRequirement(
-      /[a-z]/.test(password),
-      "Password must contain lower case letter."
-    )
+    createPasswordRequirement(/[a-z]/.test(password), "a lower case letter")
   );
   validationErrors.push(
-    createPasswordRequirement(
-      /\d/.test(password),
-      "Password must contain number."
-    )
+    createPasswordRequirement(/\d/.test(password), "a number")
   );
   validationErrors.push(
-    createPasswordRequirement(
-      /[^A-Za-z0-9]/.test(password),
-      "Password must contain special char."
-    )
+    createPasswordRequirement(/[^A-Za-z0-9]/.test(password), "a special char")
   );
   validationErrors.push(
-    createPasswordRequirement(
-      password.length >= 8,
-      "Password must be at least 8 characters long."
-    )
+    createPasswordRequirement(password.length >= 8, "8 characters")
   );
   return validationErrors;
 }

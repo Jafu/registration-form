@@ -82,11 +82,13 @@ function hintsList(passwordRequirements) {
   if (passwordRequirements.length === 0) {
     return "";
   }
-  return `<ul>
+  return `<section class="login__password-requirements">
+	<p>Make sure your password contains at least:</p>
+	<ul>
 		${passwordRequirements
       .map((requirement) => `<li>${hint(requirement)}</li>`)
       .join("")}
-	</ul>`;
+	</ul></section>`;
 }
 
 function hint({ infoText, fullFilled }) {
