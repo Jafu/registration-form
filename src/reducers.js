@@ -55,7 +55,10 @@ export function validatePassword(password) {
     createPasswordRequirement(/\d/.test(password), "a number")
   );
   validationErrors.push(
-    createPasswordRequirement(/[^A-Za-z0-9]/.test(password), "a special char")
+    createPasswordRequirement(
+      /[^A-Za-z0-9]/.test(password),
+      "a special character"
+    )
   );
   validationErrors.push(
     createPasswordRequirement(password.length >= 8, "8 characters")

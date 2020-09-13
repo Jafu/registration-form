@@ -62,7 +62,7 @@ describe("> TestSuite: reducers", () => {
       ).toStrictEqual([
         {
           fullFilled: true,
-          infoText: "a special char",
+          infoText: "a special character",
         },
       ]);
     });
