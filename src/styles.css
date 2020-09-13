@@ -21,6 +21,12 @@ li {
   display: inline-block;
   vertical-align: middle;
 }
+.login__password-requirement-icon--full-filled {
+  color: green;
+}
+.login__password-requirement-icon--not-full-filled {
+  color: red;
+}
 
 .login__password-requirement-icon-svg {
   width: 14px;

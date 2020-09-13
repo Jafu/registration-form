@@ -91,7 +91,11 @@ function hintsList(passwordRequirements) {
 
 function hint({ infoText, fullFilled }) {
   const iconFullFilled = fullFilled ? iconDone() : iconUnDone();
-  return `<div class="login__password-requirement-icon">${iconFullFilled}</div> ${infoText}`;
+  const iconClass = "login__password-requirement-icon";
+  const iconFullFilledClass = fullFilled
+    ? `${iconClass}--full-filled`
+    : `${iconClass}--not-full-filled`;
+  return `<div class="${iconClass} ${iconFullFilledClass}">${iconFullFilled}</div> ${infoText}`;
 }
 
 function iconDone() {
