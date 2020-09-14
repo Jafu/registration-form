@@ -1,3 +1,4 @@
+// FIXME make submit button interactive
 // FIXME extract components into module
 // FIXME classes for icons and input validation hints
 // FIXME remove focus handling from actions and reducers
