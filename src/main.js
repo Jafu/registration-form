@@ -14,6 +14,8 @@ export function init() {
   const store = createStore(reduce);
   store.subscribe(render.bind(undefined, store));
   store.dispatch(createInit());
+  const mountNode = document.getElementById("app");
+  mountNode.querySelector("input.login-mail").focus();
 }
 
 export default {
@@ -23,7 +25,7 @@ export default {
 function render(store) {
   const mountNode = document.getElementById("app");
   const {
-    focus,
+    // focus,
     email,
     password,
     passwordHidden,
@@ -35,6 +37,7 @@ function render(store) {
     mountNode.querySelector("form").submit();
     return;
   }
+  const focus = getFocus(document.activeElement);
   mountNode.innerHTML = loginForm({
     email,
     password,
@@ -42,23 +45,43 @@ function render(store) {
     validationErrors,
     showPasswordHints,
   });
+  if (focus) {
+    mountNode.querySelector(focus.element).focus();
+    if (focus.selection) {
+      mountNode
+        .querySelector(focus.element)
+        .setSelectionRange(...focus.selection);
+    }
+  }
+
   mountNode.querySelector("input.login-mail").oninput = (e) => {
     store.dispatch(createLoginEmailInput(e.target));
   };
 
   mountNode.querySelector("input.login-mail").onblur = (e) => {
-    store.dispatch(createLoginEmailBlur(e.target, e.relatedTarget));
+    console.log("blur");
+    const action = createLoginEmailBlur(e.target, e.relatedTarget);
+    setTimeout(() => {
+      store.dispatch(action);
+    }, 0);
   };
 
   mountNode.querySelector("input.login-password").oninput = (e) => {
-    store.dispatch(createPasswordInput(e.target));
+    console.log("input");
+    const action = createPasswordInput(e.target);
+    store.dispatch(action);
   };
 
   mountNode.querySelector("input.login-password").onblur = (e) => {
-    store.dispatch(createPasswordBlur(e.target, e.relatedTarget));
+    console.log("blur");
+    const action = createPasswordBlur(e.target, e.relatedTarget);
+    setTimeout(() => {
+      store.dispatch(action);
+    }, 0);
   };
 
   mountNode.querySelector("form").onsubmit = (e) => {
+    console.log("submit");
     store.dispatch(createSubmit(e.target, e.relatedTarget));
     e.stopPropagation();
     e.preventDefault();
@@ -72,14 +95,22 @@ function render(store) {
   };
 }
 
-  if (focus) {
-    mountNode.querySelector(focus.element).focus();
-    if (focus.selection) {
-      mountNode
-        .querySelector(focus.element)
-        .setSelectionRange(...focus.selection);
-    }
+function getFocus(element, blur) {
+  if (!element || element.classList.length === 0) {
+    return undefined;
   }
+  const nodeName = element.nodeName.toLowerCase();
+  if (typeof element.selectionStart !== "number") {
+    return {
+      element: `${nodeName}.${[...element.classList].join(".")}`,
+    };
+  }
+  return {
+    element: `input.${[...element.classList].join(".")}`,
+    selection: blur
+      ? [0, element.value.length]
+      : [element.selectionStart, element.selectionEnd],
+  };
 }
 
 function loginForm({

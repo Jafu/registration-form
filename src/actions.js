@@ -16,6 +16,7 @@ export function createInit() {
       password: "",
       passwordHidden: true,
       validationErrors: [],
+      firstTime: true,
       focus: {
         element: "input.login-mail",
         selection: [0, 0],
