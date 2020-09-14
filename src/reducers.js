@@ -12,29 +12,41 @@ export default function reduce(state, { type, data }) {
         validationErrors: validatePassword(data.value),
       };
     case ACTIONS.PASSWORD_BLUR: {
-      const validationErrors = validatePassword(data.value);
+      const validationErrors = validatePassword(state.password);
+      const hasErrors = validationErrors.find(({ fullFilled }) => !fullFilled);
       return {
         ...state,
-        password: data.value,
         focus: data.focus,
-        showPasswordHints: validationErrors.find(
-          ({ fullFilled }) => !fullFilled
-        ),
+        showPasswordHints: hasErrors,
         validationErrors,
       };
     }
-    case ACTIONS.LOGIN_EMAIL_INPUT:
-      return { ...state, email: data.value, focus: data.focus };
-    case ACTIONS.LOGIN_EMAIL_BLUR:
-      return { ...state, email: data.value, focus: data.focus };
-    case ACTIONS.REGISTER_CLICK: {
-      const validationErrors = validatePassword(state.password);
+    case ACTIONS.TOGGLE_SHOW_PASSWORD:
       return {
         ...state,
-        submitNow: true,
-        showPasswordHints: validationErrors.find(
-          ({ fullFilled }) => !fullFilled
-        ),
+        passwordHidden: !state.passwordHidden,
+      };
+    case ACTIONS.LOGIN_EMAIL_INPUT: {
+      return {
+        ...state,
+        email: data.value,
+        focus: data.focus,
+      };
+    }
+    case ACTIONS.LOGIN_EMAIL_BLUR: {
+      return {
+        ...state,
+        email: data.value,
+        focus: data.focus,
+      };
+    }
+    case ACTIONS.REGISTER_CLICK: {
+      const validationErrors = validatePassword(state.password);
+      const hasErrors = validationErrors.find(({ fullFilled }) => !fullFilled);
+      return {
+        ...state,
+        submitNow: !hasErrors,
+        showPasswordHints: hasErrors,
         validationErrors,
       };
     }

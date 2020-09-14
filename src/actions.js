@@ -4,6 +4,7 @@ export const ACTIONS = {
   LOGIN_EMAIL_BLUR: "LOGIN_EMAIL_BLUR",
   PASSWORD_INPUT: "PASSWORD_INPUT",
   PASSWORD_BLUR: "PASSWORD_BLUR",
+  TOGGLE_SHOW_PASSWORD: "TOGGLE_SHOW_PASSWORD",
   REGISTER_CLICK: "REGISTER_CLICK",
 };
 
@@ -13,6 +14,7 @@ export function createInit() {
     data: {
       email: "jakob",
       password: "",
+      passwordHidden: true,
       validationErrors: [],
       focus: {
         element: "input.login-mail",
@@ -65,6 +67,12 @@ export function createPasswordBlur(element, activeElement) {
 export function createSubmit() {
   return {
     type: ACTIONS.REGISTER_CLICK,
+  };
+}
+
+export function createToggleShowPassword() {
+  return {
+    type: ACTIONS.TOGGLE_SHOW_PASSWORD,
   };
 }
 

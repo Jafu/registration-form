@@ -21,15 +21,20 @@ li {
   list-style: none;
 }
 
+.login__form-caption {
+  color: gray;
+}
+
 .login__mail-label,
 .login__password-label {
   padding: 5px 10px;
+  display: block;
+  width: 100%;
 }
 
 #login-mail,
 #login-password {
   font-size: 14px;
-  border: 1px solid lightgray;
   border-radius: 10px;
   padding: 10px;
   width: 100%;
@@ -45,16 +50,55 @@ li {
   display: inline-block;
   vertical-align: middle;
 }
+
 .login__password-requirement-icon--full-filled {
   color: green;
 }
+
 .login__password-requirement-icon--not-full-filled {
   color: red;
+}
+
+.login__password-input--valid {
+  border: 1px solid lightgray;
+}
+
+.login__password-input--invalid {
+  border: 1px solid red;
 }
 
 .login__password-requirement-icon-svg {
   width: 14px;
   height: 14px;
+}
+
+.login__password-input-wrapper {
+  position: relative;
+}
+
+.login__show-password-toggle {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  right: 20px;
+  background: none;
+  bottom: 13px;
+  border: none;
+  padding: 0;
+  color: gray;
+  cursor: pointer;
+}
+
+.login__show-password-toggle:hover,
+.login__show-password-toggle:active {
+  color: black;
+}
+
+.login__show-password-icon,
+.login__hide-password-icon {
+  width: 100%;
+  height: 100%;
 }
 
 .login__submit-button {
