@@ -32,6 +32,7 @@ function render(store) {
     passwordHidden,
     validationErrors,
     showPasswordHints,
+    showEmailHints,
     submitNow,
   } = store.getState();
   if (submitNow) {
@@ -45,6 +46,7 @@ function render(store) {
     passwordHidden,
     validationErrors,
     showPasswordHints,
+    showEmailHints,
   });
   if (focus) {
     mountNode.querySelector(focus.element).focus();

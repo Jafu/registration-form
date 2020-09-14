@@ -12,7 +12,7 @@ export function createInit() {
   return {
     type: ACTIONS.INIT,
     data: {
-      email: "jakob",
+      email: "",
       password: "",
       passwordHidden: true,
       validationErrors: [],

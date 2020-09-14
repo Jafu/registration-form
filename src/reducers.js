@@ -34,25 +34,36 @@ export default function reduce(state, { type, data }) {
       };
     }
     case ACTIONS.LOGIN_EMAIL_BLUR: {
+      const isValid = validateEmail(data.value);
       return {
         ...state,
         email: data.value,
+        showEmailHints: !isValid,
         focus: data.focus,
       };
     }
     case ACTIONS.REGISTER_CLICK: {
+      const isValidEmail = validateEmail(state.email);
       const validationErrors = validatePassword(state.password);
       const hasErrors = validationErrors.find(({ fullFilled }) => !fullFilled);
       return {
         ...state,
-        submitNow: !hasErrors,
+        submitNow: !hasErrors && !isValidEmail,
         showPasswordHints: hasErrors,
+        showEmailHints: !isValidEmail,
         validationErrors,
       };
     }
     default:
       return state;
   }
+}
+
+export function validateEmail(email) {
+  // eslint-disable-next-line no-useless-escape
+  const emailRegexp = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const fullFilled = emailRegexp.test(email);
+  return fullFilled;
 }
 
 export function validatePassword(password) {
