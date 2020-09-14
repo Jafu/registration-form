@@ -1,3 +1,14 @@
+// FIXME extract components into module
+// FIXME classes for icons and input validation hints
+// FIXME remove focus handling from actions and reducers
+// FIXME use ids for interactive login form elements
+// FIXME add tests for components w/ flags
+// FIXME add tests for register reducer
+// FIXME add tests for email input reducer
+// FIXME add tests for blur password reducer
+// FIXME add tests for blur input reducer
+// FIXME group view state and business logic state
+// FIXME group password, email, terms data in state object
 import { createStore } from "redux";
 
 import reduce from "./reducers";
