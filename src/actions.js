@@ -17,13 +17,8 @@ export function createInit() {
       password: "",
       passwordHidden: true,
       validationErrors: [],
-      firstTime: true,
       showTermsHint: false,
       termsAreChecked: false,
-      focus: {
-        element: "input.login-mail",
-        selection: [0, 0],
-      },
     },
   };
 }
@@ -33,17 +28,15 @@ export function createLoginEmailInput(element) {
     type: ACTIONS.LOGIN_EMAIL_INPUT,
     data: {
       value: element.value,
-      focus: getFocus(element),
     },
   };
 }
 
-export function createLoginEmailBlur(element, activeElement) {
+export function createLoginEmailBlur(element) {
   return {
     type: ACTIONS.LOGIN_EMAIL_BLUR,
     data: {
       value: element.value,
-      focus: getFocus(activeElement, true),
     },
   };
 }
@@ -53,17 +46,15 @@ export function createPasswordInput(element) {
     type: ACTIONS.PASSWORD_INPUT,
     data: {
       value: element.value,
-      focus: getFocus(element),
     },
   };
 }
 
-export function createPasswordBlur(element, activeElement) {
+export function createPasswordBlur(element) {
   return {
     type: ACTIONS.PASSWORD_BLUR,
     data: {
       value: element.value,
-      focus: getFocus(activeElement, true),
     },
   };
 }
@@ -83,23 +74,5 @@ export function createToggleShowPassword() {
 export function createToggleTermsOfService() {
   return {
     type: ACTIONS.TOGGLE_TERMS_OF_SERVICE,
-  };
-}
-
-function getFocus(element, blur) {
-  if (!element || element.classList.length === 0) {
-    return undefined;
-  }
-  const nodeName = element.nodeName.toLowerCase();
-  if (typeof element.selectionStart !== "number") {
-    return {
-      element: `${nodeName}.${[...element.classList].join(".")}`,
-    };
-  }
-  return {
-    element: `input.${[...element.classList].join(".")}`,
-    selection: blur
-      ? [0, element.value.length]
-      : [element.selectionStart, element.selectionEnd],
   };
 }

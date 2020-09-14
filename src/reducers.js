@@ -8,7 +8,6 @@ export default function reduce(state, { type, data }) {
       return {
         ...state,
         password: data.value,
-        focus: data.focus,
         validationErrors: validatePassword(data.value),
       };
     case ACTIONS.PASSWORD_BLUR: {
@@ -16,7 +15,6 @@ export default function reduce(state, { type, data }) {
       const hasErrors = validationErrors.find(({ fullFilled }) => !fullFilled);
       return {
         ...state,
-        focus: data.focus,
         showPasswordHints: hasErrors,
         validationErrors,
       };
@@ -38,7 +36,6 @@ export default function reduce(state, { type, data }) {
       return {
         ...state,
         email: data.value,
-        focus: data.focus,
       };
     }
     case ACTIONS.LOGIN_EMAIL_BLUR: {
@@ -47,7 +44,6 @@ export default function reduce(state, { type, data }) {
         ...state,
         email: data.value,
         showEmailHints: !isValid,
-        focus: data.focus,
       };
     }
     case ACTIONS.REGISTER_CLICK: {

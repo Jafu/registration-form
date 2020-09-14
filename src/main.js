@@ -1,5 +1,4 @@
 // FIXME classes for icons and input validation hints
-// FIXME remove focus handling from actions and reducers
 // FIXME use ids for interactive login form elements
 // FIXME add tests for components w/ flags
 // FIXME add tests for register reducer
@@ -38,7 +37,6 @@ export default {
 function render(store) {
   const mountNode = document.getElementById("app");
   const {
-    // focus,
     email,
     password,
     passwordHidden,
@@ -79,7 +77,7 @@ function render(store) {
 
   mountNode.querySelector("input.login-mail").onblur = (e) => {
     console.log("blur");
-    const action = createLoginEmailBlur(e.target, e.relatedTarget);
+    const action = createLoginEmailBlur(e.target);
     setTimeout(() => {
       store.dispatch(action);
     }, 0);
@@ -109,7 +107,7 @@ function render(store) {
 
   mountNode.querySelector("form").onsubmit = (e) => {
     console.log("submit");
-    store.dispatch(createSubmit(e.target, e.relatedTarget));
+    store.dispatch(createSubmit(e.target));
     e.stopPropagation();
     e.preventDefault();
   };
