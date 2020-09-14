@@ -108,6 +108,17 @@ li {
   background-color: tomato;
   text-transform: uppercase;
   box-shadow: 0 2px 4px gray;
+  cursor: pointer;
+}
+
+.login__submit-button:hover {
+  background-color: orangered;
+  box-shadow: 0 2px 4px orangered;
+}
+
+.login__submit-button:active {
+  background-color: brown;
+  box-shadow: 0 2px 4px brown;
 }
 
 .login__agree-with-terms {
