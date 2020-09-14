@@ -27,8 +27,8 @@ li {
   width: 100%;
 }
 
-#login-mail,
-#login-password {
+#login__email-input,
+#login__password-input {
   font-size: 14px;
   border-radius: 10px;
   padding: 10px;
@@ -74,7 +74,7 @@ li {
   position: relative;
 }
 
-.login__show-password-toggle {
+#login__show-password-toggle {
   width: 16px;
   height: 16px;
   display: inline-block;
@@ -99,7 +99,7 @@ li {
   height: 100%;
 }
 
-.login__submit-button {
+#login__submit-button {
   font-size: 16px;
   border: none;
   border-radius: 10px;
@@ -111,12 +111,12 @@ li {
   cursor: pointer;
 }
 
-.login__submit-button:hover {
+#login__submit-button:hover {
   background-color: orangered;
   box-shadow: 0 2px 4px orangered;
 }
 
-.login__submit-button:active {
+#login__submit-button:active {
   background-color: brown;
   box-shadow: 0 2px 4px brown;
 }

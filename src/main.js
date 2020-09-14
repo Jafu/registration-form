@@ -1,4 +1,3 @@
-// FIXME use ids for interactive login form elements
 // FIXME add tests for components w/ flags
 // FIXME add tests for register reducer
 // FIXME add tests for email input reducer
@@ -26,7 +25,7 @@ export function init() {
   store.subscribe(render.bind(undefined, store));
   store.dispatch(createInit());
   const mountNode = document.getElementById("app");
-  mountNode.querySelector("input.login-mail").focus();
+  document.getElementById("login__email-input").focus();
 }
 
 export default {
@@ -62,19 +61,14 @@ function render(store) {
     showTermsHint,
   });
   if (focus) {
-    mountNode.querySelector(focus.element).focus();
-    if (focus.selection) {
-      mountNode
-        .querySelector(focus.element)
-        .setSelectionRange(...focus.selection);
-    }
+    document.getElementById(focus.element).focus();
   }
 
-  mountNode.querySelector("input.login-mail").oninput = (e) => {
+  document.getElementById("login__email-input").oninput = (e) => {
     store.dispatch(createLoginEmailInput(e.target));
   };
 
-  mountNode.querySelector("input.login-mail").onblur = (e) => {
+  document.getElementById("login__email-input").onblur = (e) => {
     console.log("blur");
     const action = createLoginEmailBlur(e.target);
     setTimeout(() => {
@@ -82,13 +76,13 @@ function render(store) {
     }, 0);
   };
 
-  mountNode.querySelector("input.login-password").oninput = (e) => {
+  document.getElementById("login__password-input").oninput = (e) => {
     console.log("input");
     const action = createPasswordInput(e.target);
     store.dispatch(action);
   };
 
-  mountNode.querySelector("input.login-password").onblur = (e) => {
+  document.getElementById("login__password-input").onblur = (e) => {
     console.log("blur");
     const action = createPasswordBlur(e.target, e.relatedTarget);
     setTimeout(() => {
@@ -96,9 +90,7 @@ function render(store) {
     }, 0);
   };
 
-  mountNode.querySelector(
-    "input.login__agree-with-terms-check"
-  ).onchange = () => {
+  document.getElementById("login__agree-with-terms-check").onchange = () => {
     console.log("check");
     const action = createToggleTermsOfService();
     store.dispatch(action);
@@ -111,7 +103,7 @@ function render(store) {
     e.preventDefault();
   };
 
-  mountNode.querySelector(".login__show-password-toggle").onclick = (e) => {
+  document.getElementById("login__show-password-toggle").onclick = (e) => {
     console.log(e);
     store.dispatch(createToggleShowPassword());
     e.stopPropagation();
@@ -119,20 +111,11 @@ function render(store) {
   };
 }
 
-function getFocus(element, blur) {
-  if (!element || element.classList.length === 0) {
+function getFocus(element) {
+  if (!(element && element.id)) {
     return undefined;
   }
-  const nodeName = element.nodeName.toLowerCase();
-  if (typeof element.selectionStart !== "number") {
-    return {
-      element: `${nodeName}.${[...element.classList].join(".")}`,
-    };
-  }
   return {
-    element: `input.${[...element.classList].join(".")}`,
-    selection: blur
-      ? [0, element.value.length]
-      : [element.selectionStart, element.selectionEnd],
+    element: element.id,
   };
 }

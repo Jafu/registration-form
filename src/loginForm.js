@@ -15,7 +15,7 @@ export function loginForm({
 		<p>${inputPassword(password, passwordHidden, showPasswordHints)}</p>
 		${showPasswordHints ? hintsList(validationErrors) : ""}
 		${termsOfService(termsAreChecked, showTermsHint)}
-		<input type="submit" class="login__submit-button" value="Register Now"/>
+		<input type="submit" id="login__submit-button" value="Register Now"/>
 	</form>`;
 }
 
@@ -45,8 +45,8 @@ export function inputName(email, showEmailHints) {
   const invalidClass = showEmailHints
     ? "login__email-input--invalid"
     : "login__email-input--valid";
-  return `<label class="login__mail-label" for="login-mail">Email address</label>
-<input id="login-mail" placeholder="Enter email address" class="login-mail ${invalidClass}" type="text" value="${email}"/>`;
+  return `<label class="login__mail-label" for="login__email-input">Email address</label>
+<input id="login__email-input" placeholder="Enter email address" class="${invalidClass}" type="text" value="${email}"/>`;
 }
 
 export function inputPassword(
@@ -59,10 +59,10 @@ export function inputPassword(
   const invalidClass = showPasswordHints
     ? "login__password-input--invalid"
     : "login__password-input--valid";
-  return `<label class="login__password-label" for="login-password">Password</label>
+  return `<label class="login__password-label" for="login__password-input">Password</label>
 	<div class="login__password-input-wrapper">
-		<input id="login-password" placeholder="Enter password" class="login-password ${invalidClass}" type="${inputType}" value="${password}"/>
-		<div class="login__show-password-toggle" title="toggle password visibility">${iconPasswordHidden}</div>
+		<input id="login__password-input" placeholder="Enter password" class="${invalidClass}" type="${inputType}" value="${password}"/>
+		<div id="login__show-password-toggle" title="toggle password visibility">${iconPasswordHidden}</div>
 	</div>`;
 }
 
@@ -70,10 +70,10 @@ export function termsOfService(checked = false, showTermsHint = true) {
   return `<section class="login__agree-with-terms ${
     showTermsHint ? " login__agree-with-terms--error" : ""
   }">
-    <input type="checkbox" id="login__agree-with-terms-check" class="login__agree-with-terms-check" ${
+    <input type="checkbox" id="login__agree-with-terms-check"${
       checked ? ' checked="checked"' : ""
     }>
-    <label>
+    <label for="login__agree-with-terms-check">
       I have read and accept the
       <a href="/terms-of-service" target="_blank">terms of service</a>.
     </label>
