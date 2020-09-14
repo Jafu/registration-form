@@ -1,4 +1,3 @@
-// FIXME classes for icons and input validation hints
 // FIXME use ids for interactive login form elements
 // FIXME add tests for components w/ flags
 // FIXME add tests for register reducer
