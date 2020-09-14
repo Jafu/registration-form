@@ -8,6 +8,7 @@ import {
   createLoginEmailInput,
   createPasswordInput,
   createSubmit,
+  createToggleShowPassword,
 } from "./actions";
 
 export function init() {
