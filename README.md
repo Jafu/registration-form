@@ -23,3 +23,40 @@ The form contains the following elements:
 - Jest
 - Redux
 - Fontawesome SVG Icons
+
+# Developement
+
+## Run app for developement
+
+
+Start dev server to build and run app:
+```
+npm run dev
+```
+
+Find registration form at `localhost:1234`
+
+## Test
+Run tests with
+```
+npm run test
+```
+
+Start watch to task for tests during developement:
+```
+npm run test-watch
+```
+
+Run linter
+```
+npm run lint
+```
+
+## Next tasks
+// FIXME add tests for components w/ flags
+// FIXME add tests for register reducer
+// FIXME add tests for email input reducer
+// FIXME add tests for blur password reducer
+// FIXME add tests for blur input reducer
+// FIXME group view state and business logic state
+// FIXME group password, email, terms data in state object
