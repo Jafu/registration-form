@@ -6,6 +6,7 @@ export const ACTIONS = {
   PASSWORD_BLUR: "PASSWORD_BLUR",
   TOGGLE_SHOW_PASSWORD: "TOGGLE_SHOW_PASSWORD",
   REGISTER_CLICK: "REGISTER_CLICK",
+  TOGGLE_TERMS_OF_SERVICE: "TOGGLE_TERMS_OF_SERVICE",
 };
 
 export function createInit() {
@@ -17,6 +18,8 @@ export function createInit() {
       passwordHidden: true,
       validationErrors: [],
       firstTime: true,
+      showTermsHint: false,
+      termsAreChecked: false,
       focus: {
         element: "input.login-mail",
         selection: [0, 0],
@@ -74,6 +77,12 @@ export function createSubmit() {
 export function createToggleShowPassword() {
   return {
     type: ACTIONS.TOGGLE_SHOW_PASSWORD,
+  };
+}
+
+export function createToggleTermsOfService() {
+  return {
+    type: ACTIONS.TOGGLE_TERMS_OF_SERVICE,
   };
 }
 

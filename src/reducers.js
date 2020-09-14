@@ -26,6 +26,14 @@ export default function reduce(state, { type, data }) {
         ...state,
         passwordHidden: !state.passwordHidden,
       };
+    case ACTIONS.TOGGLE_TERMS_OF_SERVICE: {
+      const termsAreChecked = !state.termsAreChecked;
+      return {
+        ...state,
+        showTermsHint: !termsAreChecked,
+        termsAreChecked,
+      };
+    }
     case ACTIONS.LOGIN_EMAIL_INPUT: {
       return {
         ...state,
@@ -48,9 +56,10 @@ export default function reduce(state, { type, data }) {
       const hasErrors = validationErrors.find(({ fullFilled }) => !fullFilled);
       return {
         ...state,
-        submitNow: !hasErrors && !isValidEmail,
+        submitNow: !hasErrors && !isValidEmail && state.termsAreChecked,
         showPasswordHints: hasErrors,
         showEmailHints: !isValidEmail,
+        showTermsHint: !state.termsAreChecked,
         validationErrors,
       };
     }

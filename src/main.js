@@ -9,6 +9,7 @@ import {
   createPasswordInput,
   createSubmit,
   createToggleShowPassword,
+  createToggleTermsOfService,
 } from "./actions";
 
 export function init() {
@@ -34,6 +35,8 @@ function render(store) {
     showPasswordHints,
     showEmailHints,
     submitNow,
+    termsAreChecked,
+    showTermsHint,
   } = store.getState();
   if (submitNow) {
     mountNode.querySelector("form").submit();
@@ -47,6 +50,8 @@ function render(store) {
     validationErrors,
     showPasswordHints,
     showEmailHints,
+    termsAreChecked,
+    showTermsHint,
   });
   if (focus) {
     mountNode.querySelector(focus.element).focus();
@@ -81,6 +86,14 @@ function render(store) {
     setTimeout(() => {
       store.dispatch(action);
     }, 0);
+  };
+
+  mountNode.querySelector(
+    "input.login__agree-with-terms-check"
+  ).onchange = () => {
+    console.log("check");
+    const action = createToggleTermsOfService();
+    store.dispatch(action);
   };
 
   mountNode.querySelector("form").onsubmit = (e) => {
@@ -123,6 +136,8 @@ function loginForm({
   validationErrors,
   showPasswordHints,
   showEmailHints,
+  termsAreChecked,
+  showTermsHint,
 }) {
   return `<form class="login" action='/register'>
 		<h1>Register</h1>
@@ -130,6 +145,7 @@ function loginForm({
 		<p>${inputName(email, showEmailHints)}</p>
 		<p>${inputPassword(password, passwordHidden, showPasswordHints)}</p>
 		${showPasswordHints ? hintsList(validationErrors) : ""}
+		${termsOfService(termsAreChecked, showTermsHint)}
 		<input type="submit" class="login__submit-button" value="Register Now"/>
 	</form>`;
 }
@@ -175,6 +191,25 @@ function inputPassword(password, passwordHidden = true, showPasswordHints) {
 		<input id="login-password" placeholder="Enter password" class="login-password ${invalidClass}" type="${inputType}" value="${password}"/>
 		<div class="login__show-password-toggle" title="toggle password visibility">${iconPasswordHidden}</div>
 	</div>`;
+}
+
+function termsOfService(checked = false, showTermsHint = true) {
+  return `<section class="login__agree-with-terms ${
+    showTermsHint ? " login__agree-with-terms--error" : ""
+  }">
+    <input type="checkbox" id="login__agree-with-terms-check" class="login__agree-with-terms-check" ${
+      checked ? ' checked="checked"' : ""
+    }>
+    <label>
+      I have read and accept the
+      <a href="/terms-of-service" target="_blank">terms of service</a>.
+    </label>
+	${
+    showTermsHint
+      ? `<p class="login__terms-of-service-hint"><span class="login__agree-with-terms-hint-icon">${iconUnDone()}</span>Please accept the terms of service.</p>`
+      : ``
+  }
+  </section>`;
 }
 
 function iconHidden() {

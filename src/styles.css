@@ -39,6 +39,7 @@ li {
   padding: 0 10px;
 }
 
+.login__agree-with-terms-hint-icon,
 .login__password-requirement-icon {
   width: 16px;
   height: 16px;
@@ -107,4 +108,23 @@ li {
   background-color: tomato;
   text-transform: uppercase;
   box-shadow: 0 2px 4px gray;
+}
+
+.login__agree-with-terms {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.login__terms-of-service-hint {
+  color: red;
+  margin: 10px 0 0;
+}
+
+.login__agree-with-terms--error {
+  border: 1px solid red;
+}
+
+.login__agree-with-terms-hint-icon {
+  color: red;
 }
