@@ -66,7 +66,6 @@ function render(store) {
   };
 
   document.getElementById("login__email-input").onblur = (e) => {
-    console.log("blur");
     const action = createLoginEmailBlur(e.target);
     setTimeout(() => {
       store.dispatch(action);
@@ -74,13 +73,11 @@ function render(store) {
   };
 
   document.getElementById("login__password-input").oninput = (e) => {
-    console.log("input");
     const action = createPasswordInput(e.target);
     store.dispatch(action);
   };
 
   document.getElementById("login__password-input").onblur = (e) => {
-    console.log("blur");
     const action = createPasswordBlur(e.target, e.relatedTarget);
     setTimeout(() => {
       store.dispatch(action);
@@ -88,20 +85,17 @@ function render(store) {
   };
 
   document.getElementById("login__agree-with-terms-check").onchange = () => {
-    console.log("check");
     const action = createToggleTermsOfService();
     store.dispatch(action);
   };
 
   mountNode.querySelector("form").onsubmit = (e) => {
-    console.log("submit");
     store.dispatch(createSubmit(e.target));
     e.stopPropagation();
     e.preventDefault();
   };
 
   document.getElementById("login__show-password-toggle").onclick = (e) => {
-    console.log(e);
     store.dispatch(createToggleShowPassword());
     e.stopPropagation();
     e.preventDefault();
