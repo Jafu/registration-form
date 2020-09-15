@@ -88,8 +88,8 @@ li {
   cursor: pointer;
 }
 
-.login__show-password-toggle:hover,
-.login__show-password-toggle:active {
+#login__show-password-toggle:hover,
+#login__show-password-toggle:active {
   color: black;
 }
 
