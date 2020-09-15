@@ -7,10 +7,33 @@
 	  <form action="index_submit" method="post" accept-charset="utf-8">
 		  <input type="email" name="email" id="email" placeholder="Enter email address" title="Please enter valid email address" required autocomplete="current-password" >
 		  <span class="validity"></span>
+		  <span class="validity-hint"></span>
 		  <input type="password" name="password" id="password" placeholder="Enter password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^0-9a-zA-Z]).*$" minlength="8" required
 		  title="Password should be longer than 8 chars, contain number, upper and lowercase letter and special character">
 		  <span class="validity"></span>
-		  <input type="submit">
+		  <div class="validity-hint">
+
+			 Password should: 
+			  <ul>
+				  <li>
+					  contain an uppercase letter
+				  </li>
+				  <li>
+					  contain a lowercase letter
+				  </li>
+				  <li>
+					  contain a number
+				  </li>
+				  <li>
+					 and special character
+				  </li>
+				  <li>
+					  be longer than 8 characters
+				  </li>
+		  </div>
+
+
+		  <input type="submit" id="submit-button" value="Register now">
 	  </form>
   </div>
   <script src="./index.js"></script>

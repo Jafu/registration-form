@@ -1,3 +1,16 @@
+#email,
+#password,
+#submit-button {
+	padding: 10px;
+	border-radius: 10px;
+}
+
+#submit-button {
+	background-color: tomato;
+	color: white;
+	border: 1px solid tomato;
+}
+
 input:invalid {
   border: red solid 1px;
 }
@@ -13,9 +26,13 @@ input:invalid + span::after {
     padding-left: 5px;
 
 }
+input:valid + span + div.validity-hint{
+	display: none
+}
 
-input:valid + span::after {
+input:valid + span:after {
     position: absolute;
     content: '✓';
     padding-left: 5px;
+	display: inline;
 }
