@@ -17,7 +17,6 @@ export function init() {
   const store = createStore(reduce);
   store.subscribe(render.bind(undefined, store));
   store.dispatch(createInit());
-  const mountNode = document.getElementById("app");
   document.getElementById("login__email-input").focus();
 }
 
@@ -55,6 +54,11 @@ function render(store) {
   });
   if (focus) {
     document.getElementById(focus.element).focus();
+    if (focus.selection) {
+      document
+        .getElementById(focus.element)
+        .setSelectionRange(...focus.selection);
+    }
   }
 
   document.getElementById("login__email-input").oninput = (e) => {
@@ -108,7 +112,13 @@ function getFocus(element) {
   if (!(element && element.id)) {
     return undefined;
   }
+  if (typeof element.selectionStart !== "number") {
+    return {
+      element: element.id,
+    };
+  }
   return {
     element: element.id,
+    selection: [element.selectionStart, element.selectionEnd],
   };
 }
