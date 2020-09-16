@@ -4,36 +4,75 @@
 	</head>
 <body>
   <div id='app'>
-	  <form action="index_submit" method="post" accept-charset="utf-8">
-		  <input type="email" name="email" id="email" placeholder="Enter email address" title="Please enter valid email address" required autocomplete="current-password" >
-		  <span class="validity"></span>
-		  <span class="validity-hint"></span>
-		  <input type="password" name="password" id="password" placeholder="Enter password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^0-9a-zA-Z]).*$" minlength="8" required
-		  title="Password should be longer than 8 chars, contain number, upper and lowercase letter and special character">
-		  <span class="validity"></span>
-		  <div class="validity-hint">
-
-			 Password should: 
-			  <ul>
-				  <li>
-					  contain an uppercase letter
-				  </li>
-				  <li>
-					  contain a lowercase letter
-				  </li>
-				  <li>
-					  contain a number
-				  </li>
-				  <li>
-					 and special character
-				  </li>
-				  <li>
-					  be longer than 8 characters
-				  </li>
+	  <form action="index_submit" method="post" accept-charset="utf-8" class="login">
+		<h1>Register</h1>
+		<p class="login__form-caption">Create your personal account</p>	
+		<section>
+			<label class="login__mail-label" for="login__email-input">Email address</label>
+			<input
+				id="login__email-input"
+				type="email"
+				name="email"
+				placeholder="Enter email address"
+				title="Please enter valid email address"
+				value=""
+				required
+				autofocus
+				>
+			<span class="validity-hint"></span>
+		</section>
+		<section>
+			<label class="login__password-label" for="login__password-input">Password</label>
+			<span class="login__password-input-wrapper">
+			<div id="login__show-password-toggle" title="toggle password visibility"></div>
+			<input
+				id="login__password-input"
+				placeholder="Enter password"
+				type="password"
+				value=""
+				name="password"
+				pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^0-9a-zA-Z]).*$"
+				minlength="8"
+				required
+				title="Password should be longer than 8 chars, contain number, upper and lowercase letter and special character">
+		<div class="login__password-validity-hint">
+			Password should: 
+			<ul>
+				<li>
+					<span class="login__password-requirement-icon-uppercase"></span>
+					contain an uppercase letter
+				</li>
+				<li>
+					<span class="login__password-requirement-icon-lowercase"></span>
+					contain a lowercase letter
+				</li>
+				<li>
+					<span class="login__password-requirement-icon-number"></span>
+					contain a number
+				</li>
+				<li>
+					<span class="login__password-requirement-icon-special-character"></span>
+					contain a special character
+				</li>
+				<li>
+					<span class="login__password-requirement-icon-length"></span>
+					be longer than 8 characters
+				</li>
 		  </div>
+		  </section>
 
-
-		  <input type="submit" id="submit-button" value="Register now">
+		<section class="login__agree-with-terms ">
+			<input
+				type="checkbox"
+				id="login__agree-with-terms-check"
+				title="Please accept the terms of service"
+				required>
+			<label for="login__agree-with-terms-check">
+				I have read and accept the
+				<a href="/terms-of-service" target="_blank">terms of service</a>.
+			</label>
+		</section>
+		<input type="submit" id="login__submit-button" value="Register Now">
 	  </form>
   </div>
   <script src="./index.js"></script>

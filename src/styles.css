@@ -1,38 +1,190 @@
-#email,
-#password,
-#submit-button {
-	padding: 10px;
-	border-radius: 10px;
+.login {
+  font-family: Helvetica;
+  font-size: 14px;
+  width: 300px;
+  margin: 5px;
+  box-shadow: 0 2px 4px gray;
+  padding: 10px 20px 20px;
+  border-radius: 3px;
 }
 
-#submit-button {
-	background-color: tomato;
-	color: white;
-	border: 1px solid tomato;
+.login__form-caption {
+  color: dimgray;
 }
 
-input:invalid {
-  border: red solid 1px;
+.login__mail-label,
+.login__password-label {
+  padding: 5px 10px;
+  display: block;
+  width: 100%;
 }
 
-input + span {
-    padding-right: 30px;
+#login__email-input,
+#login__password-input {
+  font-size: 14px;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid lightgray;
 }
 
-input:invalid + span::after {
-
-    position: absolute;
-    content: '✖';
-    padding-left: 5px;
-
-}
-input:valid + span + div.validity-hint{
-	display: none
+#login__password-input {
+  padding-right: 30px;
 }
 
-input:valid + span:after {
-    position: absolute;
-    content: '✓';
-    padding-left: 5px;
-	display: inline;
+#login__email-input,
+#login__password-input {
+  border: 1px solid lightgray;
+}
+
+#login__email-input:user-invalid,
+#login__password-input:user-invalid {
+  border: 1px solid red;
+}
+
+#login__submit-button {
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+  background-color: darkred;
+  text-transform: uppercase;
+  box-shadow: 0 2px 4px gray;
+  cursor: pointer;
+}
+
+#login__submit-button:hover {
+  background-color: orangered;
+  box-shadow: 0 2px 4px orangered;
+}
+
+#login__submit-button:active {
+  background-color: brown;
+  box-shadow: 0 2px 4px brown;
+}
+
+.login__agree-with-terms {
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.login__password-input--interactive + .login__password-validity-hint li {
+  list-style: none;
+}
+
+.login__password-input--interactive
+  + .login__password-validity-hint
+  .login__password-requirement-icon-uppercase,
+.login__password-input--interactive
+  + .login__password-validity-hint
+  .login__password-requirement-icon-lowercase,
+.login__password-input--interactive
+  + .login__password-validity-hint
+  .login__password-requirement-icon-number,
+.login__password-input--interactive
+  + .login__password-validity-hint
+  .login__password-requirement-icon-special-character,
+.login__password-input--interactive
+  + .login__password-validity-hint
+  .login__password-requirement-icon-length {
+  display: inline-block;
+}
+
+.login__terms-of-service-hint {
+  color: red;
+  margin: 10px 0 0;
+}
+
+.login__agree-with-terms--error {
+  border: 1px solid red;
+}
+
+.login__agree-with-terms-hint-icon {
+  color: red;
+}
+
+.login__agree-with-terms-hint-icon,
+.login__password-requirement-icon {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.login__password-validity-hint {
+  padding: 10px;
+}
+
+.login__requirement-icon-svg {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.login__password-requirement-icon--full-filled {
+  color: green;
+}
+
+.login__password-requirement-icon--not-full-filled {
+  color: red;
+}
+
+.login__password-requirement-icon-uppercase,
+.login__password-requirement-icon-lowercase,
+.login__password-requirement-icon-number,
+.login__password-requirement-icon-special-character,
+.login__password-requirement-icon-length {
+  width: 16px;
+  height: 16px;
+  display: none;
+  vertical-align: middle;
+}
+
+.login__requirement-icon-svg {
+  width: 14px;
+  height: 14px;
+}
+
+.login__password-requirement-icon--full-filled {
+  color: green;
+}
+
+.login__password-requirement-icon--not-full-filled {
+  color: red;
+}
+
+.login__password-input-wrapper {
+  position: relative;
+}
+
+#login__show-password-toggle {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  position: absolute;
+  right: 30px;
+  background: none;
+  bottom: 0;
+  border: none;
+  padding: 0;
+  color: gray;
+  cursor: pointer;
+}
+
+#login__show-password-toggle:hover,
+#login__show-password-toggle:active {
+  color: black;
+}
+
+.login__show-password-icon,
+.login__hide-password-icon {
+  width: 100%;
+  height: 100%;
 }
